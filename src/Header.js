@@ -10,11 +10,14 @@ class Header extends Component {
       this.state = {
         colors1: [],
         colors2: [],
+        randomColor: [],
+        blackColor: '#000000',
         isToggleOn: true,
         value: '',
       };
 
       this.handleClick = this.handleClick.bind(this);
+      this.handleColor = this.handleColor.bind(this);
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -29,12 +32,29 @@ class Header extends Component {
             colors1: data1.colors,
             colors2: data2.colors
         }));
+        setTimeout(function() {
+          this.handleColor();
+        }.bind(this), 1000)
     }
 
     handleClick() {
       this.setState(prevState => ({
         isToggleOn: !prevState.isToggleOn
       }));
+    }
+
+    handleColor() {
+      const { colors1 } = this.state;
+      const { colors2 } = this.state;
+
+      const colors = [
+        colors1.map(color1 => color1.hex),
+        colors2.map(color2 => color2.hex)
+      ]
+
+      const randomColor = '#' + colors[Math.floor(Math.random()*colors.length)];
+
+      this.setState({randomColor: randomColor});
     }
 
     handleChange(event) {
@@ -46,24 +66,13 @@ class Header extends Component {
     }
   
     render() {
-        const { colors1 } = this.state;
-        const { colors2 } = this.state;
-
-        const colors = [
-          colors1.map(color1 => color1.hex),
-          colors2.map(color2 => color2.hex)
-        ]
-
-        const randomColor = '#' + colors[Math.floor(Math.random()*colors.length)];
-        const blackColor = '#000000';
-    
         return (
           <div class="Header">
             <div>
               Click on the button below to change the color:
             </div>
             <div>
-            <button className="Button" style={{backgroundColor: this.state.isToggleOn ? randomColor : blackColor}} onClick={this.handleClick}>
+            <button className="Button" style={{backgroundColor: this.state.isToggleOn ? this.state.randomColor : this.state.blackColor}} onClick={this.handleClick}>
             {this.state.value}
             </button>
             </div>
