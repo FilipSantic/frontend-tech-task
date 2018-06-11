@@ -1,5 +1,6 @@
 # BE frontend-tech-task
 This is my first React project I've ever made.
+The project is used for testing my skills and logic in React for Blazing Edge company.
 
 # These are the instructions for the project
 Create a new project using [create-react-app](https://github.com/facebookincubator/create-react-app).
