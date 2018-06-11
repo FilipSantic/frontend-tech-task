@@ -60,7 +60,7 @@ class Header extends Component {
         return (
           <div class="Header">
             <div>
-              Click on the button below to change it's color.
+              Click on the button below to change it's color:
             </div>
             <div>
             <button className="Button" style={{backgroundColor: this.state.isToggleOn ? randomColor : blackColor}} onClick={this.handleClick}>
